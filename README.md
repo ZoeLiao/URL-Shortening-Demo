@@ -1,5 +1,5 @@
-# Shortening-Demo
-This respository is a shortening demo website.
+# URL-Shortening-Demo
+This respository is a URL shortening demo website.
 
 ## Backend
 
