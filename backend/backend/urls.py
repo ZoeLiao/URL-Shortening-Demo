@@ -29,7 +29,7 @@ from shortener import views as shortener_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shortener/', shortener_view.URLsView.as_view()),
-    path('shortener/<str:short_path>', shortener_view.URLView.as_view()),
+    path('<str:short_path>', shortener_view.URLView.as_view()),
 ]
 
 
