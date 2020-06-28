@@ -10,4 +10,9 @@ This respository is a shortening demo website.
 - Install requirements: `pip install -r requirements.txt`
 - Migrate Database: `python manage.py migrate`
 - Start project: `python3 manage.py runserver`
-- Local URL: [http://localhost:8000](http://localhost:8000)
+- Local URL: [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
+
+### How to use
+- You can create a short URL by POST /shortener/
+- After getting short URL, you can request it and get the website.
+![./images/demo.gif](./images/demo.gif)

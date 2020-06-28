@@ -63,7 +63,7 @@ class URLsView(GenericAPIView):
             with transaction.atomic():
                 serializer.save()
             data = serializer.data
-            short_url = get_short_url(request, url_obj.short_path)
+            short_url = get_short_url(request, data['short_path'])
             data = {'short_url': short_url}
         except Exception as e:
             data = {'error': str(e)}
