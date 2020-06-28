@@ -1,7 +1,7 @@
 import random
 import string
 
-#from shortener.models import URL
+from shortener.models import URL
 
 
 # total combination: (24*2+10) ** 5 = 656,356,768  > 10,000,000
@@ -13,12 +13,18 @@ BASIC_CHAR = ''.join([
 SHORTEN_URL_LEN = 5
 
 
-def create_shorten_path():
-    shorten_path = ''.join(
+def create_short_path():
+    short_path = ''.join(
         random.choice(BASIC_CHAR) for _ in range(SHORTEN_URL_LEN)
     )
-    while URL.object.filter(shorten_path=shorten_path).exists():
-        shorten_path = ''.join(
+    while URL.objects.filter(short_path=short_path).exists():
+        short_path = ''.join(
             random.choice(BASIC_CHAR) for _ in range(SHORTEN_URL_LEN)
         )
-    return shorten_path
+    return short_path
+
+
+def get_short_url(request, short_path):
+    schema = request.scheme
+    host = request.get_host()
+    return f'{schema}://{host}/shortener/{short_path}'
