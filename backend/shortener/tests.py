@@ -1,4 +1,5 @@
 from functools import partial
+from mock import patch
 
 from django.urls import reverse
 from rest_framework.test import APITestCase
@@ -11,6 +12,12 @@ from backend.results import (
 )
 from shortener.models import URL
 from shortener.serializers import URLSerializer
+
+
+MOCK_RETURN_VALUE = '<html></html>'
+
+class MockGet:
+    text = MOCK_RETURN_VALUE
 
 
 class ShortenTests(APITestCase):
@@ -40,7 +47,8 @@ class ShortenTests(APITestCase):
         obj = URL.objects.get(short_path=short_path)
         self.assertEqual(obj.origin_url, data['origin_url'])
 
-    def test_get_html_by_short_url(self):
+    @patch('shortener.views.requests.get')
+    def test_get_html_by_short_url(self, mock_requests):
         # create dummy data
         data = {
             'origin_url': self.TEST_URL,
@@ -50,16 +58,13 @@ class ShortenTests(APITestCase):
         serializer.is_valid()
         serializer.save()
 
+        mock_requests.return_value = MockGet()
         url = self.SHORT_URL(kwargs={'short_path': data['short_path']})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn(
-            'Stack Overflow - Where Developers Learn',
-            response.content.decode()
-        )
+        self.assertEqual(MOCK_RETURN_VALUE, response.content.decode())
 
     def test_failed_to_get_html_by_short_url_without_dummy_data(self):
-        # create dummy data
         data = {
             'short_path': 'aBc1'
         }
