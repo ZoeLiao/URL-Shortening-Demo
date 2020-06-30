@@ -11,7 +11,7 @@ SUCCESS = Result('0'*DEFAULT_CODE_LEN, 'Success', '')
 DB_ERROR = partial(
     Result,
     ''.join(['1', '0'*(DEFAULT_CODE_LEN-1)]),
-    'DB Error'
+    'Database Error'
 )
 REQUEST_ERROR = partial(
     Result,

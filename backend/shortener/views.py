@@ -94,5 +94,6 @@ class URLView(GenericAPIView):
             res = requests.get(url_obj.origin_url)
             if res.text:
                 return HttpResponse(res.text)
-        data = REQUEST_ERROR(detaul='Failed to request website.')
+
+        data = REQUEST_ERROR(detail='Failed to request website.')
         return CustomJsonResponse(data)
