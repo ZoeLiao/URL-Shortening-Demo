@@ -2,13 +2,6 @@ from shortener.models import URL
 from rest_framework import serializers
 
 
-class URLsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = URL
-        fields = '__all__'
-
-
 class URLSerializer(serializers.ModelSerializer):
 
     class Meta:
