@@ -3,14 +3,19 @@ This respository is a URL shortening demo website.
 
 ## Backend
 
-### Set Up
+### Set up by Docker
+- `docker build -t shortener .`
+- `docker run -p 8000:8000 shortener`
+- Visit [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
+
+### Set Up by Python
 - Create virtual environment: `python3 -v venv venv`
 - Activate virtual environment:
     - Mac: `. venv/bin/activate`
 - Install requirements: `pip install -r requirements.txt`
 - Migrate Database: `python manage.py migrate`
 - Start project: `python3 manage.py runserver`
-- Local URL: [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
+- Visit [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
 
 ### How to use
 - You can create a short URL by POST [/shortener/](http://localhost:8000/shortener/).
