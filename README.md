@@ -24,6 +24,7 @@ This respository is a URL shortening demo website.
 
 ## Test
 - Run test scripts: `python manage.py test`
+- CI: travis
 
 ## Results
 
