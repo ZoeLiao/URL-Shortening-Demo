@@ -16,6 +16,7 @@ from shortener.serializers import URLSerializer
 
 MOCK_RETURN_VALUE = '<html></html>'
 
+
 class MockGet:
     text = MOCK_RETURN_VALUE
 
